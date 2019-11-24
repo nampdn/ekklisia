@@ -1,0 +1,13 @@
+{
+    "private": true,
+    "license": "MIT",
+    "scripts": {
+        "client": "run-p dev:admin dev:app",
+        "dev:admin": "pushd client/ekklisia-admin && yarn start",
+        "dev:app": "pushd client/ekklisia-app && yarn start"
+    },
+    "devDependencies": {
+        "npm-run-all": "4.1.5",
+        "shx": "0.3.2"
+    }
+}

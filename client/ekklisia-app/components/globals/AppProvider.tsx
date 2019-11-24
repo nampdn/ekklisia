@@ -1,61 +1,48 @@
-import React, { useState, useEffect } from "react";
-import { Provider as ReduxProvider } from "react-redux";
-import * as Font from "expo-font";
+import React, { useState, useEffect } from 'react'
+import { Provider as ReduxProvider } from 'react-redux'
+import * as Font from 'expo-font'
 
-import { mapping, light as lightTheme } from "@eva-design/eva";
+import { mapping, light as lightTheme } from '@eva-design/eva'
 import {
   ApplicationProvider as UIKittenProvider,
-  IconRegistry
-} from "react-native-ui-kitten";
-import { EvaIconsPack } from "@ui-kitten/eva-icons";
+  IconRegistry,
+} from 'react-native-ui-kitten'
+import { EvaIconsPack } from '@ui-kitten/eva-icons'
 
-import { ApolloClient } from "apollo-client";
-import { ApolloProvider } from "@apollo/react-hooks";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { HttpLink } from "apollo-link-http";
+import { BaraProvider, configureStore } from '../../bara'
 
-import { BaraProvider, configureStore } from "../../bara";
-
-const store = configureStore();
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri: "http://graph.vietbible.cloud"
-  })
-});
+const store = configureStore()
 
 export interface AppProviderProps {
-  children: React.ReactNode;
+  children: React.ReactNode
 }
 
 export const AppProvider = ({ children }: AppProviderProps) => {
-  const [assetLoaded, setAssetLoaded] = useState(false);
+  const [assetLoaded, setAssetLoaded] = useState(false)
   const loadFonts = async () => {
     try {
       await Font.loadAsync({
-        "SFCompactDisplay-Heavy": require("../../assets/fonts/SF-Compact-Display-Heavy.otf"),
-        "SFCompactDisplay-Medium": require("../../assets/fonts/SF-Compact-Display-Medium.otf"),
-        "SFCompactDisplay-Light": require("../../assets/fonts/SF-Compact-Display-Light.otf"),
-        "Bookerly-Regular": require("../../assets/fonts/Bookerly-Regular.ttf")
-      });
+        'SFCompactDisplay-Heavy': require('../../assets/fonts/SF-Compact-Display-Heavy.otf'),
+        'SFCompactDisplay-Medium': require('../../assets/fonts/SF-Compact-Display-Medium.otf'),
+        'SFCompactDisplay-Light': require('../../assets/fonts/SF-Compact-Display-Light.otf'),
+        'Bookerly-Regular': require('../../assets/fonts/Bookerly-Regular.ttf'),
+      })
     } catch (err) {}
-    setAssetLoaded(true);
-  };
+    setAssetLoaded(true)
+  }
 
   useEffect(() => {
-    loadFonts();
-  }, []);
+    loadFonts()
+  }, [])
 
   return assetLoaded ? (
     <BaraProvider store={store}>
       <ReduxProvider store={store}>
-        <ApolloProvider client={client}>
-          <IconRegistry icons={EvaIconsPack} />
-          <UIKittenProvider mapping={mapping} theme={lightTheme}>
-            {children}
-          </UIKittenProvider>
-        </ApolloProvider>
+        <IconRegistry icons={EvaIconsPack} />
+        <UIKittenProvider mapping={mapping} theme={lightTheme}>
+          {children}
+        </UIKittenProvider>
       </ReduxProvider>
     </BaraProvider>
-  ) : null;
-};
+  ) : null
+}

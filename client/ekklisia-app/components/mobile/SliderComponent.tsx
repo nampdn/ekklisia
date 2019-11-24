@@ -1,54 +1,54 @@
-import React from "react";
-import { ScrollView, View, StyleSheet, Animated } from "react-native";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import React from 'react'
+import { ScrollView, View, StyleSheet, Animated } from 'react-native'
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 
 import {
   selectAllWindows,
   selectActiveWindow,
   focusWindow,
-  WindowState
-} from "../../bara/features/window";
-import { AnimatedButton } from "../common";
+  WindowState,
+} from '../../bara/features/window'
+import { AnimatedButton } from '../common'
 
 const styles = StyleSheet.create({
   main: {
-    position: "absolute",
+    position: 'absolute',
     left: 0,
     bottom: 0,
-    width: "100%"
+    width: '100%',
   },
   container: {
-    position: "relative",
-    flexDirection: "row",
-    alignItems: "center",
-    width: "100%",
+    position: 'relative',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
     height: 70,
-    backgroundColor: "#e1e1ef",
-    paddingTop: 2
+    backgroundColor: '#e1e1ef',
+    paddingTop: 2,
   },
   scroll: {
     height: 65,
-    paddingVertical: 5
-  }
-});
+    paddingVertical: 5,
+  },
+})
 
 export interface SliderComponentProps {
-  bottomAnim: Animated.AnimatedDiffClamp;
-  opacityView: Animated.AnimatedDiffClamp;
-  opacityAnim: Animated.AnimatedDiffClamp;
+  bottomAnim: Animated.AnimatedDiffClamp
+  opacityView: Animated.AnimatedDiffClamp
+  opacityAnim: Animated.AnimatedDiffClamp
 }
 
 export const SliderComponent = (props: SliderComponentProps) => {
-  const { bottomAnim, opacityAnim, opacityView } = props;
-  const windows = useSelector(selectAllWindows, shallowEqual);
-  const selectedWindow = useSelector(selectActiveWindow, shallowEqual);
-  const dispatch = useDispatch();
+  const { bottomAnim, opacityAnim, opacityView } = props
+  const windows = useSelector(selectAllWindows, shallowEqual)
+  const selectedWindow = useSelector(selectActiveWindow, shallowEqual)
+  const dispatch = useDispatch()
 
   return (
     <Animated.View
       style={[
         styles.main,
-        { transform: [{ translateY: bottomAnim }], opacity: opacityView }
+        { transform: [{ translateY: bottomAnim }], opacity: opacityView },
       ]}
     >
       <View style={styles.container}>
@@ -77,5 +77,5 @@ export const SliderComponent = (props: SliderComponentProps) => {
         </ScrollView>
       </View>
     </Animated.View>
-  );
-};
+  )
+}
