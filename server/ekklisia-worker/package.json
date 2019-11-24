@@ -1,9 +1,9 @@
 {
   "name": "ekklisia-worker",
-  "description": "Database Migrator",
+  "description": "Database Migrator & Background Task Services",
   "version": "0.1.0",
   "main": "index.js",
-  "author": "VGM",
+  "author": "Nam Pham <nampdn@protonmail.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -39,12 +39,9 @@
     "bufferutil": "4.0.1",
     "consola": "2.9.0",
     "encoding": "0.1.12",
-    "js-yaml": "3.13.1",
     "lru-cache": "5.1.1",
-    "node-yaml": "4.0.1",
     "p-all": "2.1.0",
     "pouchdb": "7.1.1",
-    "remarkable": "1.7.1",
     "rxdb": "8.7.3",
     "simple-git": "1.119.0",
     "utf-8-validate": "5.0.2"
