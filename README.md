@@ -1,8 +1,10 @@
-# Ekkliisia - Church App
+# Ekklisia - Church App
 
 Help Christians do their better job at Church.
 
-## Main features
+## 
+
+## Main Features
 
 - [ ] Attendance management.
   - [ ] Manager.
