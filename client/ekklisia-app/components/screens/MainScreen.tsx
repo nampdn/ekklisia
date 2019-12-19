@@ -1,6 +1,6 @@
-import React from "react";
-import AppNavigator from "../../mobile/navigation/AppNavigation";
+import React from 'react'
+import { LoginScreen } from './LoginScreen'
 
 export const MainScreen = () => {
-  return <AppNavigator />;
-};
+  return <LoginScreen />
+}
