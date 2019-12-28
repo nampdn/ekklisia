@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "852082381816",
+    "firebase_url": "https://vgm-station.firebaseio.com",
+    "project_id": "vgm-station",
+    "storage_bucket": "vgm-station.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852082381816:android:6ee77f30726e92255dfc0d",
+        "android_client_info": {
+          "package_name": "host.exp.exponent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852082381816-6a91gqafi344831mgve653js694luvnn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "host.exp.exponent",
+            "certificate_hash": "4756d7df024eee9dfbdb5c58650be55681a5a361"
+          }
+        },
+        {
+          "client_id": "852082381816-94sojtrllf9mmsjl1ooema1cu1pfai7a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGjVY4UNjfOGHq2OxOZEw022PTIZ06tjU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852082381816-94sojtrllf9mmsjl1ooema1cu1pfai7a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "852082381816-ofjti1k21bhrtju4r8g7kj15bhc5632r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852082381816:android:d4177aee2a2e8ee25dfc0d",
+        "android_client_info": {
+          "package_name": "tv.vgm.station"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852082381816-1sh7mppu51h76tko66f4k441skb21n38.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tv.vgm.station",
+            "certificate_hash": "8aba1a7b75d3f2fa0dfe819bbaeab0f57dd7e076"
+          }
+        },
+        {
+          "client_id": "852082381816-94sojtrllf9mmsjl1ooema1cu1pfai7a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGjVY4UNjfOGHq2OxOZEw022PTIZ06tjU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852082381816-94sojtrllf9mmsjl1ooema1cu1pfai7a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "852082381816-ofjti1k21bhrtju4r8g7kj15bhc5632r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
