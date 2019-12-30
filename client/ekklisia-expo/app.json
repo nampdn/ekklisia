@@ -19,7 +19,7 @@
     "assetBundlePatterns": ["assets/**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "tv.vgm.station",
+      "bundleIdentifier": "com.btngiadinh.ekklisia",
       "usesAppleSignIn": true,
       "config": {
         "googleSignIn": {

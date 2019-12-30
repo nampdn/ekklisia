@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
   toggle: {
     marginRight: 10,
   },
+  checkView: {},
 })
 
 interface MemberItemProps {
