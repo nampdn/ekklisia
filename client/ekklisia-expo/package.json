@@ -6,7 +6,6 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "postinstall": "bit import && bit build",
     "upload:ios": "expo upload:ios --apple-id dnkhoa@gmail.com --apple-id-password \"bpgd-epif-ajaw-agil\" --app-name \"VGM Station\" --sku tv.vgm.station",
     "publish:prod": "expo publish --release-channel production"
   },
@@ -15,7 +14,7 @@
     "@barajs/core": "3.0.0-alpha.430",
     "@barajs/formula": "^3.0.0-alpha.481",
     "@barajs/redux": "1.6.0",
-    "@bit/barajs.portions.react": "file:./components/react",
+    "@bit/barajs.portions.react": "^0.4.1",
     "@eva-design/eva": "1.3.0",
     "@react-navigation/native": "3.6.2",
     "@rematch/core": "1.3.0",

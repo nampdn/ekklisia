@@ -1,0 +1,72 @@
+generator photon {
+  provider = "photonjs"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @default(cuid()) @id
+  email    String  @unique
+  password String
+  name     String?
+  posts    Post[]
+  roles    Role[]
+  profile  Profile?
+}
+
+model Post {
+  id        String   @default(cuid()) @id
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  published Boolean  @default(false)
+  title     String
+  content   String?
+  author    User?
+}
+
+model Role {
+  id       String @default(cuid()) @id
+  name     String
+  roleCode Int
+  users    User[]
+}
+
+model Profile {
+  id           String    @default(cuid()) @id
+  fullName     String
+  gender       String
+  oldId        String?
+  email        String?
+  facebookId   String?
+  phoneNumber  String?
+  birthday     DateTime?
+  joinDate     DateTime?
+  dayOfBirth   Int?
+  monthOfBirth Int?
+  yearOfBirth  Int?
+  users        User
+}
+
+model Group {
+  id String @default(cuid()) @id
+  name String
+  leader Profile?  @relation(name: "GroupLeader")
+  members Profile[] @relation(name: "GroupMembers")
+}
+
+model Org {
+    id         String     @default(cuid()) @id
+    name       String
+    groups     Group[]
+    activities Activity[]
+}
+
+model Activity {
+    id   String @default(cuid()) @id
+    name String
+    type String
+    org  Org
+}

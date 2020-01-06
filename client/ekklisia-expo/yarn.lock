@@ -882,15 +882,15 @@
   dependencies:
     xstream "11.11.0"
 
+"@barajs/formula@3.0.0-alpha.481", "@barajs/formula@^3.0.0-alpha.481":
+  version "3.0.0-alpha.481"
+  resolved "https://registry.npmjs.org/@barajs/formula/-/formula-3.0.0-alpha.481.tgz#9f7d88230d10c23f70d0ece5eacdcfa3e07a0eba"
+  integrity sha512-8TJOloV+gMlYg0w3QOyyNlsYA8Z98nBXqpAv7do/Mmupg2gSSg/hrIvZsUETDVof0ic5yaVR1JSDhQ42JCkeSg==
+
 "@barajs/formula@^3.0.0-alpha.480":
   version "3.0.0-alpha.480"
   resolved "https://registry.npmjs.org/@barajs/formula/-/formula-3.0.0-alpha.480.tgz#66527136dab7303ef197e217d5a5d2cd1f171585"
   integrity sha512-hGe+y+VlafhomcOL55IjeZVDhzmc6F5anRmmEirovqxC0Gq2inogXVckmhHd0+1YlKFrJkZnJFIp2jPoRns6Rw==
-
-"@barajs/formula@^3.0.0-alpha.481":
-  version "3.0.0-alpha.481"
-  resolved "https://registry.npmjs.org/@barajs/formula/-/formula-3.0.0-alpha.481.tgz#9f7d88230d10c23f70d0ece5eacdcfa3e07a0eba"
-  integrity sha512-8TJOloV+gMlYg0w3QOyyNlsYA8Z98nBXqpAv7do/Mmupg2gSSg/hrIvZsUETDVof0ic5yaVR1JSDhQ42JCkeSg==
 
 "@barajs/redux@1.6.0":
   version "1.6.0"
@@ -902,10 +902,13 @@
     lodash.isequal "4.5.0"
     redux "^4.0.4"
 
-"@bit/barajs.portions.react@file:./components/react":
-  version "0.4.0"
+"@bit/barajs.portions.react@^0.4.1":
+  version "0.4.1"
+  resolved "https://node.bit.dev/barajs.portions.react/-/barajs.portions.react-0.4.1.tgz#8786beae1a755dbb8aab1be42f11e5a788c3d399"
+  integrity sha1-h4a+rhp1XbuKqxvkLxHlp4jD05k=
   dependencies:
     "@barajs/core" "3.0.0-alpha.430"
+    "@barajs/formula" "3.0.0-alpha.481"
     "@types/react" "16.9.11"
     "@types/react-dom" "16.9.4"
     events "3.0.0"

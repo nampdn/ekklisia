@@ -28,8 +28,7 @@
       }
     },
     "android": {
-      "package": "tv.vgm.station",
-      "googleServicesFile": "./services/google-services.json"
+      "package": "tv.vgm.station"
     }
   }
 }
