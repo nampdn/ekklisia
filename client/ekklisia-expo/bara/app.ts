@@ -1,7 +1,7 @@
 import { app } from '@barajs/core'
 import { BaraReact } from '@bit/barajs.portions.react'
-import BaraRedux from '@barajs/redux'
 import { Store } from 'redux'
+import BaraRedux from '@barajs/redux'
 
 import { scannerTrigger } from './scanner/trigger'
 import { authTriggers } from './auth/trigger'

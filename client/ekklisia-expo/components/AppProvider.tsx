@@ -8,7 +8,6 @@ import { ApplicationProvider, IconRegistry } from '@ui-kitten/components'
 import { mapping, light } from '@eva-design/eva'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
 import { Provider as ReduxProvider } from 'react-redux'
-import { NavigationNativeContainer } from '@react-navigation/native'
 
 import { ApolloClient } from 'apollo-client'
 import { ApolloProvider } from '@apollo/react-hooks'
@@ -21,8 +20,7 @@ const bara = run(BaraApp(context, store))
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: 'https://graph.vgm.tv',
-    // uri: 'http://192.168.2.45:4000',
+    uri: 'https://graph.btngiadinh.com',
   }),
 })
 
