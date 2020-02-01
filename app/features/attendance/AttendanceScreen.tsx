@@ -1,6 +1,7 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ScrollView } from 'react-native'
 import { Layout, Text } from '@ui-kitten/components'
+import CalendarStrip from 'react-native-calendar-strip'
 
 import { unit } from '../styles'
 import { MemberList, memberList } from '../member'
@@ -9,9 +10,11 @@ import { ActivitySelect } from '../activity'
 const styles = StyleSheet.create({
   layout: {
     flex: 1,
-    padding: 2 * unit,
+    paddingLeft: 2 * unit,
+    paddingRight: 2 * unit,
   },
   headerText: {
+    marginTop: 2 * unit,
     marginBottom: 3 * unit,
   },
 })
@@ -19,11 +22,17 @@ const styles = StyleSheet.create({
 export const AttendanceScreen = () => {
   return (
     <Layout style={styles.layout}>
-      <Text style={styles.headerText} category="h3">
-        Điểm Danh
-      </Text>
-      <ActivitySelect />
-      <MemberList data={memberList} />
+      <ScrollView>
+        <Text style={styles.headerText} category="h4">
+          Điểm Danh
+        </Text>
+        <CalendarStrip
+          locale={{ name: 'vi', config: {} }}
+          style={{ height: 150, paddingTop: unit }}
+        />
+        <ActivitySelect />
+        <MemberList data={memberList} />
+      </ScrollView>
     </Layout>
   )
 }

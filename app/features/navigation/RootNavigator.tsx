@@ -18,7 +18,7 @@ const AppNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Attendance',
+    initialRouteName: 'Loading',
     headerMode: 'none',
   },
 )

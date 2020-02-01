@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
-import { Avatar, Text, Layout, Toggle } from '@ui-kitten/components'
+import { Avatar, Text, Layout, Toggle, CheckBox } from '@ui-kitten/components'
 
 const styles = StyleSheet.create({
   memberItem: {
@@ -40,7 +40,11 @@ export const MemberItem = ({ member }: MemberItemProps) => {
       <Text style={styles.text} status="basic" category="s1" numberOfLines={1}>
         {member.name}
       </Text>
-      <Toggle style={styles.toggle} checked={checked} onChange={switchCheck} />
+      <CheckBox
+        style={styles.toggle}
+        checked={checked}
+        onChange={switchCheck}
+      />
     </Layout>
   )
 }
