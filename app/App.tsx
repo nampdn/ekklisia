@@ -1,22 +1,13 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { View, Text } from 'react-native'
 import { AppProvider } from './components/AppProvider'
 
-import { LoadingScreen } from './features/loading'
+import RootNavigator from './features/navigation/RootNavigator'
 
 export default function App() {
   return (
     <AppProvider>
-      <LoadingScreen />
+      <RootNavigator />
     </AppProvider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
