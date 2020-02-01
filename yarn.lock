@@ -366,6 +366,11 @@ pify@^3.0.0:
   resolved "https://registry.npmjs.org/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
   integrity sha1-5aSs0sEB/fPZpNB/DbxNtJ3SgXY=
 
+react-hook-form@4.8.0:
+  version "4.8.0"
+  resolved "https://registry.npmjs.org/react-hook-form/-/react-hook-form-4.8.0.tgz#8d1a4721fda8b27dcfeeb0b8c6303cf7441d8429"
+  integrity sha512-Q0fm5TF5UoJa9bHWp/LCqo/xYNLAtwOREIRGDHFxrv5bYUoCuliDAD60KBmi/V2Q7P5z/vM3Brx/JGbuvzqwGg==
+
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
   resolved "https://registry.npmjs.org/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"

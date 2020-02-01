@@ -1,6 +1,7 @@
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 
+import { AttendanceScreen } from '../attendance'
 import { LoadingScreen } from '../loading'
 import { AuthScreen } from '../auth'
 
@@ -12,9 +13,12 @@ const AppNavigator = createStackNavigator(
     Auth: {
       screen: AuthScreen,
     },
+    Attendance: {
+      screen: AttendanceScreen,
+    },
   },
   {
-    initialRouteName: 'Loading',
+    initialRouteName: 'Attendance',
     headerMode: 'none',
   },
 )

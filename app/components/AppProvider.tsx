@@ -1,11 +1,18 @@
 import React from 'react'
-import { ApplicationProvider as KittenProvider } from '@ui-kitten/components'
+import {
+  ApplicationProvider as KittenProvider,
+  IconRegistry,
+} from '@ui-kitten/components'
 import { dark as darkTheme, mapping } from '@eva-design/eva'
+import { EvaIconsPack } from '@ui-kitten/eva-icons'
 
 export const AppProvider = ({ children }: any) => {
   return (
-    <KittenProvider theme={darkTheme} mapping={mapping}>
-      {children}
-    </KittenProvider>
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <KittenProvider theme={darkTheme} mapping={mapping}>
+        {children}
+      </KittenProvider>
+    </>
   )
 }

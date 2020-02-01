@@ -21,7 +21,7 @@ export const LoadingScreen = ({ navigation }: any) => {
   useEffect(() => {
     setTimeout(() => {
       goToAuth()
-    }, 3000)
+    }, 1500)
   }, [])
 
   return (
