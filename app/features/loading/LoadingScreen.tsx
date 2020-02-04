@@ -27,7 +27,7 @@ export const LoadingScreen = ({ navigation }: any) => {
   return (
     <Layout style={styles.layout}>
       <Spinner size="giant" />
-      <Text style={styles.text}>Kiểm tra bảo mật...</Text>
+      <Text style={styles.text}>Đang kiểm tra bảo mật...</Text>
     </Layout>
   )
 }
