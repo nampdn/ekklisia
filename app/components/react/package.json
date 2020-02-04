@@ -1,0 +1,59 @@
+{
+  "name": "@bit/barajs.portions.react",
+  "version": "0.6.6",
+  "homepage": "https://bit.dev/barajs/portions/react",
+  "main": "dist/index.js",
+  "dependencies": {
+    "react-native": "0.61.4",
+    "@types/react": "16.9.11",
+    "@barajs/core": "3.0.0-alpha.430",
+    "@barajs/formula": "3.0.0-alpha.482",
+    "events": "3.0.0",
+    "@types/react-dom": "16.9.4"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "redux": "4.0.4",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "bit": {
+    "env": {
+      "compiler": {
+        "bit.envs/compilers/react-typescript@3.1.6": {
+          "rawConfig": {
+            "tsconfig": {
+              "compilerOptions": {
+                "lib": [
+                  "dom",
+                  "es2015"
+                ],
+                "jsx": "react"
+              },
+              "include": [
+                "./**/*"
+              ]
+            },
+            "development": false,
+            "copyPolicy": {
+              "ignorePatterns": [
+                "package.json",
+                "package-lock.json",
+                "tsconfig.json"
+              ],
+              "disable": false
+            }
+          },
+          "options": {},
+          "files": {}
+        }
+      }
+    },
+    "overrides": {
+      "dependencies": {
+        "events": "+"
+      }
+    }
+  }
+}
