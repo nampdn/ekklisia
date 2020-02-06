@@ -42,7 +42,7 @@ const AuthFooter = ({ onPress }) => () => (
 )
 
 const AuthForm = ({ onSubmit }: any) => {
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, watch } = useForm()
 
   useEffect(() => {
     register('username')
@@ -70,7 +70,7 @@ export const AuthScreen = ({ navigation }: any) => {
     <Layout style={styles.layout}>
       <Layout style={styles.brand}>
         <Text category="h3">BTN Gia Định</Text>
-        <Text category="p">Chương trình điều hành ban ngành Hội Thánh</Text>
+        <Text category="p">Điều hành ban ngành Hội Thánh</Text>
       </Layout>
       <AuthForm onSubmit={authSuccess} />
     </Layout>

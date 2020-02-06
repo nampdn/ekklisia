@@ -17,6 +17,9 @@ import { HttpLink } from 'apollo-link-http'
 import { run } from '@barajs/core'
 import { BaraApp } from '../features'
 import { configureStore } from '../features/redux'
+import { default as appTheme } from '../assets/custom-theme.json'
+
+const theme = { ...darkTheme, ...appTheme }
 
 const store = configureStore()
 const bara = run(BaraApp(context, store))
@@ -32,7 +35,7 @@ export const AppProvider = ({ children }: any) => {
     <BaraProvider bara={bara} store={store}>
       <ApolloProvider client={client}>
         <IconRegistry icons={EvaIconsPack} />
-        <KittenProvider theme={darkTheme} mapping={mapping}>
+        <KittenProvider theme={theme} mapping={mapping}>
           {children}
         </KittenProvider>
       </ApolloProvider>
