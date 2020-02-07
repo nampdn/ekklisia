@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 export const AttendanceScreen = () => {
   return (
     <Layout style={styles.layout}>
-      <ScrollView>
+      <ScrollView scrollEnabled showsVerticalScrollIndicator={false}>
         <Text style={styles.headerText} category="h4">
           Điểm Danh
         </Text>
