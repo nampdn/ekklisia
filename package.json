@@ -5,7 +5,8 @@
         "client": "run-p dev:admin dev:app",
         "dev:admin": "pushd client/ekklisia-admin && yarn start",
         "dev:app": "pushd client/ekklisia-app && yarn start",
-        "add:app": "pushd client/ekklisia-app && yarn add -E"
+        "add:app": "pushd client/ekklisia-app && yarn add -E",
+        "build:web": "cd app && yarn build:web"
     },
     "devDependencies": {
         "npm-run-all": "4.1.5",
