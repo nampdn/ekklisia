@@ -86,7 +86,7 @@ export const AuthScreen = ({ navigation }: any) => {
   }
 
   useEffect(() => {
-    if (data?.login?.token) {
+    if (data && data.login.token) {
       alert(JSON.stringify(data))
       authSuccess()
     }
