@@ -7,9 +7,11 @@ import {
   Card,
   CardHeader,
   Text,
+  Spinner,
 } from '@ui-kitten/components'
 import { useForm } from 'react-hook-form'
 import { useMutation } from '@apollo/react-hooks'
+import LottieView from 'lottie-react-native'
 
 import { unit } from '../styles'
 import { LOGIN_MUTATION } from './authGraphQL'
@@ -18,6 +20,7 @@ const styles = StyleSheet.create({
   layout: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
     padding: 2 * unit,
   },
   card: {
@@ -68,13 +71,15 @@ const AuthForm = ({ onSubmit }: any) => {
         style={styles.input}
         label="Mật khẩu"
         onChangeText={change('password')}
+        textContentType="password"
+        secureTextEntry={true}
       />
     </Card>
   )
 }
 
 export const AuthScreen = ({ navigation }: any) => {
-  const [login, { data, error }] = useMutation(LOGIN_MUTATION)
+  const [login, { data, error, loading }] = useMutation(LOGIN_MUTATION)
 
   const authenticate = ({ email, password }) => {
     console.log('Form:', email, password)
@@ -87,14 +92,13 @@ export const AuthScreen = ({ navigation }: any) => {
 
   useEffect(() => {
     if (data && data.login.token) {
-      alert(JSON.stringify(data))
       authSuccess()
     }
   }, [data])
 
   useEffect(() => {
     if (error) {
-      alert(JSON.stringify(error))
+      alert('Đăng nhập thất bại, vui lòng thử lại hoặc liên hệ người quản trị!')
     }
   }, [error])
 
@@ -104,7 +108,11 @@ export const AuthScreen = ({ navigation }: any) => {
         <Text category="h3">BTN Gia Định</Text>
         <Text category="p">Điều hành ban ngành Hội Thánh</Text>
       </Layout>
-      <AuthForm onSubmit={authenticate} />
+      {!loading ? (
+        <AuthForm onSubmit={authenticate} />
+      ) : (
+        <Spinner size="giant" />
+      )}
     </Layout>
   )
 }
