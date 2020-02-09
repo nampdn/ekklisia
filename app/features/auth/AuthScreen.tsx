@@ -11,7 +11,7 @@ import {
 } from '@ui-kitten/components'
 import { useForm } from 'react-hook-form'
 import { useMutation } from '@apollo/react-hooks'
-import LottieView from 'lottie-react-native'
+import useLocalStorage from 'react-use-localstorage'
 
 import { unit } from '../styles'
 import { LOGIN_MUTATION } from './authGraphQL'
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
 })
 
 const AuthHeader = () => <CardHeader title="Đăng Nhập"></CardHeader>
-const AuthFooter = ({ onPress }) => () => (
+const AuthFooter = ({ onPress }: any) => () => (
   <View>
     <Button onPress={onPress}>Đăng Nhập</Button>
   </View>
@@ -80,9 +80,9 @@ const AuthForm = ({ onSubmit }: any) => {
 
 export const AuthScreen = ({ navigation }: any) => {
   const [login, { data, error, loading }] = useMutation(LOGIN_MUTATION)
+  const [jwt, setJWT] = useLocalStorage('jwt', '')
 
   const authenticate = ({ email, password }) => {
-    console.log('Form:', email, password)
     login({ variables: { email, password } })
   }
 
@@ -92,6 +92,7 @@ export const AuthScreen = ({ navigation }: any) => {
 
   useEffect(() => {
     if (data && data.login.token) {
+      setJWT(data.login.token)
       authSuccess()
     }
   }, [data])

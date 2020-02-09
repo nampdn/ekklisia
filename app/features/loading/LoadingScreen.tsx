@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import { Layout, Spinner, Text } from '@ui-kitten/components'
+import useLocalStorage from 'react-use-localstorage'
 
 const styles = StyleSheet.create({
   layout: {
@@ -14,13 +15,23 @@ const styles = StyleSheet.create({
 })
 
 export const LoadingScreen = ({ navigation }: any) => {
+  const [jwt] = useLocalStorage('jwt', '')
+
   const goToAuth = () => {
     navigation.replace('Auth')
   }
 
+  const goToAttendance = () => {
+    navigation.replace('Attendance')
+  }
+
   useEffect(() => {
     setTimeout(() => {
-      goToAuth()
+      if (jwt !== '') {
+        goToAttendance()
+      } else {
+        goToAuth()
+      }
     }, 1500)
   }, [])
 
