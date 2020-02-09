@@ -58,15 +58,16 @@ export const MemberItem = ({ member }: MemberItemProps) => {
         >
           {member.fullName}
         </Text>
-        <View style={styles.toggleAnimation}>
-          <Lottie
-            direction={checked ? 1 : -1}
-            options={{
-              loop: false,
-              animationData: animation,
-            }}
-          />
-        </View>
+        {/* <View style={styles.toggleAnimation}> */}
+        <Lottie
+          direction={checked ? 1 : -1}
+          style={{ width: 10 * unit, height: 10 * unit }}
+          options={{
+            loop: false,
+            animationData: animation,
+          }}
+        />
+        {/* </View> */}
       </Layout>
     </TouchableOpacity>
   )
