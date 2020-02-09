@@ -40,7 +40,7 @@ export const MemberItem = ({ member }: MemberItemProps) => {
   }
   const buildAvatarUrl = (id, fid) =>
     fid
-      ? `http://graph.facebook.com/${fid}/picture?type=square`
+      ? `http://graph.facebook.com/v6.0/${fid}/picture`
       : `https://api.adorable.io/avatars/285/${id}.png`
   return (
     <TouchableOpacity onPress={switchCheck}>
@@ -61,7 +61,12 @@ export const MemberItem = ({ member }: MemberItemProps) => {
         {/* <View style={styles.toggleAnimation}> */}
         <Lottie
           direction={checked ? 1 : -1}
-          style={{ width: 10 * unit, height: 10 * unit }}
+          style={{
+            position: 'absolute',
+            width: 12 * unit,
+            height: 12 * unit,
+            right: -2 * unit,
+          }}
           options={{
             loop: false,
             animationData: animation,

@@ -16,7 +16,8 @@ export const MemberList = ({ data, style }: MemberListProps) => {
 
   return (
     <View style={[style]}>
-      <List data={data} renderItem={renderMemberList} scrollEnabled={true} />
+      {/* <List data={data} renderItem={renderMemberList} scrollEnabled={false} /> */}
+      {data.map(item => renderMemberList({ item }))}
     </View>
   )
 }

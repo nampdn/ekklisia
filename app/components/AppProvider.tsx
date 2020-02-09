@@ -38,11 +38,12 @@ const authLink = setContext((_, { headers }) => {
 })
 
 const httpLink = createHttpLink({
-  // uri: 'https://graph.btngiadinh.com',
-  uri:
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:4000'
-      : 'https://data.btngiadinh.com',
+  uri: 'https://data.btngiadinh.com',
+  // uri:
+  //   process.env.NODE_ENV === 'development'
+  //     // ? 'http://localhost:4000'
+  //     ? 'https://data.btngiadinh.com',
+  //     : 'https://data.btngiadinh.com',
 })
 
 const client = new ApolloClient({
