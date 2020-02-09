@@ -42,7 +42,7 @@ const httpLink = createHttpLink({
   uri:
     process.env.NODE_ENV === 'development'
       ? 'http://192.168.1.105:4000'
-      : 'https://graph.btngiadinh.com',
+      : 'https://data.btngiadinh.com',
 })
 
 const client = new ApolloClient({
