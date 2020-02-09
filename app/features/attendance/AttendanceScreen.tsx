@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
+import React from 'react'
+import { StyleSheet, ScrollView, View } from 'react-native'
 import { Layout, Text, Spinner } from '@ui-kitten/components'
 import CalendarStrip from 'react-native-calendar-strip'
 import useLocalStorage from 'react-use-localstorage'
@@ -17,17 +17,24 @@ const styles = StyleSheet.create({
     paddingLeft: 2 * unit,
     paddingRight: 2 * unit,
     alignItems: 'center',
-    paddingBottom: 5 * unit,
+    // paddingBottom: 5 * unit,
   },
   content: {
     maxWidth: 80 * unit,
     padding: 2 * unit,
-    height: '100vh',
     width: '100vw',
+    paddingBottom: 6 * unit,
   },
   headerText: {
     marginTop: 2 * unit,
     marginBottom: 3 * unit,
+  },
+  loading: {
+    flex: 1,
+    height: 4 * unit,
+    paddingTop: 8 * unit,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
 
@@ -48,13 +55,19 @@ export const AttendanceScreen = () => {
           />
           <ActivitySelect />
           {loading ? (
-            <Spinner size="giant" />
+            <View style={styles.loading}>
+              <Spinner size="giant" />
+            </View>
           ) : (
-            <MemberList data={data.membersInGroup} />
+            <>
+              <MemberList data={data.membersInGroup} />
+              <ConfirmSlider
+                onConfirm={() =>
+                  alert('Chức năng chưa mở, vui lòng thử lại sau')
+                }
+              />
+            </>
           )}
-          <ConfirmSlider
-            onConfirm={() => alert('Chức năng chưa mở, vui lòng thử lại sau')}
-          />
         </Layout>
       </ScrollView>
     </Layout>

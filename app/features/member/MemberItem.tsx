@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Avatar, Text, Layout, CheckBox } from '@ui-kitten/components'
+import Lottie from 'lottie-react-web'
+
+import animation from '../../assets/check-icon.json'
+import { unit } from '../styles'
 
 const styles = StyleSheet.create({
   memberItem: {
@@ -17,6 +21,10 @@ const styles = StyleSheet.create({
   },
   toggle: {
     marginRight: 10,
+  },
+  toggleAnimation: {
+    width: 14 * unit,
+    height: 14 * unit,
   },
   checkView: {},
 })
@@ -50,11 +58,15 @@ export const MemberItem = ({ member }: MemberItemProps) => {
         >
           {member.fullName}
         </Text>
-        <CheckBox
-          style={styles.toggle}
-          checked={checked}
-          onChange={switchCheck}
-        />
+        <View style={styles.toggleAnimation}>
+          <Lottie
+            direction={checked ? 1 : -1}
+            options={{
+              loop: false,
+              animationData: animation,
+            }}
+          />
+        </View>
       </Layout>
     </TouchableOpacity>
   )

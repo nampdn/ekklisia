@@ -37,6 +37,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     padding: 2 * unit,
   },
+  loading: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 })
 
 const AuthHeader = () => <CardHeader title="Đăng Nhập"></CardHeader>
@@ -112,7 +117,9 @@ export const AuthScreen = ({ navigation }: any) => {
       {!loading ? (
         <AuthForm onSubmit={authenticate} />
       ) : (
-        <Spinner size="giant" />
+        <View style={styles.loading}>
+          <Spinner size="giant" />
+        </View>
       )}
     </Layout>
   )

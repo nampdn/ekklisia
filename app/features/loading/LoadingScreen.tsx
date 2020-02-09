@@ -40,7 +40,7 @@ export const LoadingScreen = ({ navigation }: any) => {
   return (
     <Layout style={styles.layout}>
       <Lottie
-        style={{ width: 300, height: 300 }}
+        style={{ width: 200, height: 200 }}
         options={{
           animationData: animation,
         }}
