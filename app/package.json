@@ -30,6 +30,7 @@
     "graphql-shield": "7.0.9",
     "graphql-tag": "2.10.3",
     "lottie-react-native": "~2.6.1",
+    "lottie-react-web": "^2.1.4",
     "moment": "2.24.0",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",

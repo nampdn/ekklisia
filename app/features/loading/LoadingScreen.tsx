@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import { Layout, Spinner, Text } from '@ui-kitten/components'
 import useLocalStorage from 'react-use-localstorage'
+import Lottie from 'lottie-react-web'
+import animation from '../../assets/face-scanning.json'
 
 const styles = StyleSheet.create({
   layout: {
@@ -32,12 +34,17 @@ export const LoadingScreen = ({ navigation }: any) => {
       } else {
         goToAuth()
       }
-    }, 1500)
+    }, 3550)
   }, [])
 
   return (
     <Layout style={styles.layout}>
-      <Spinner size="giant" />
+      <Lottie
+        style={{ width: 300, height: 300 }}
+        options={{
+          animationData: animation,
+        }}
+      />
       <Text style={styles.text}>Đang kiểm tra bảo mật...</Text>
     </Layout>
   )
