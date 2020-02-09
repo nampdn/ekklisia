@@ -41,7 +41,7 @@ const httpLink = createHttpLink({
   // uri: 'https://graph.btngiadinh.com',
   uri:
     process.env.NODE_ENV === 'development'
-      ? 'http://192.168.1.105:4000'
+      ? 'http://localhost:4000'
       : 'https://data.btngiadinh.com',
 })
 
