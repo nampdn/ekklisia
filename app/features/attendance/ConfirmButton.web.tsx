@@ -6,7 +6,7 @@ import { unit } from '../styles'
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: unit,
+    marginTop: 2 * unit,
     marginBottom: unit,
   },
 })

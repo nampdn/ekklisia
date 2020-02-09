@@ -12,7 +12,8 @@ import { BaraProvider, context } from '@bit/barajs.portions.react'
 import { ApolloClient } from 'apollo-client'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { HttpLink } from 'apollo-link-http'
+import { setContext } from 'apollo-link-context'
+import { HttpLink, createHttpLink } from 'apollo-link-http'
 
 import { run } from '@barajs/core'
 import { BaraApp } from '../features'
@@ -23,11 +24,30 @@ const theme = { ...darkTheme, ...appTheme }
 
 const store = configureStore()
 const bara = run(BaraApp(context, store))
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('jwt')
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  }
+})
+
+const httpLink = createHttpLink({
+  // uri: 'https://graph.btngiadinh.com',
+  uri:
+    process.env.NODE_ENV === 'development'
+      ? 'http://192.168.1.105:4000'
+      : 'https://graph.btngiadinh.com',
+})
+
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri: 'https://graph.btngiadinh.com',
-  }),
+  link: authLink.concat(httpLink),
 })
 
 export const AppProvider = ({ children }: any) => {

@@ -16,14 +16,19 @@ export interface ActivitySelectProps {
 }
 
 export const ActivitySelect = ({ style }: ActivitySelectProps) => {
-  const [index, setIndex] = useState(null)
+  const [index, setIndex] = useState({ text: 'Nhóm Thanh Niên' })
   return (
     <View style={[styles.layout, style]}>
       <Select
         selectedOption={index}
-        onSelect={setIndex}
+        onSelect={setIndex as any}
+        placeholder="Chọn hoạt động"
         label="Hoạt Động"
-        data={[{ text: 'First' }, { text: 'Second' }]}
+        data={[
+          { text: 'Nhóm Thanh Niên' },
+          { text: 'Học Kinh Thánh' },
+          { text: 'Thăm Viếng' },
+        ]}
       />
     </View>
   )

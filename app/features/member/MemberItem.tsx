@@ -30,13 +30,17 @@ export const MemberItem = ({ member }: MemberItemProps) => {
   const switchCheck = () => {
     setChecked(!checked)
   }
+  const buildAvatarUrl = (id, fid) =>
+    fid
+      ? `http://graph.facebook.com/${fid}/picture?type=square`
+      : `https://api.adorable.io/avatars/285/${id}.png`
   return (
     <TouchableOpacity onPress={switchCheck}>
       <Layout level="3" style={styles.memberItem}>
         <Avatar
           style={styles.avatar}
           size="large"
-          source={{ uri: member.photoUrl }}
+          source={{ uri: buildAvatarUrl(member.id, member.facebookId) }}
         />
         <Text
           style={styles.text}
@@ -44,7 +48,7 @@ export const MemberItem = ({ member }: MemberItemProps) => {
           category="s1"
           numberOfLines={1}
         >
-          {member.name}
+          {member.fullName}
         </Text>
         <CheckBox
           style={styles.toggle}
