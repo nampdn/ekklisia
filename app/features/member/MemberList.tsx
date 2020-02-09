@@ -10,14 +10,13 @@ export interface MemberListProps {
 }
 
 export const MemberList = ({ data, style }: MemberListProps) => {
-  const renderMemberList = ({ item }) => {
-    return <MemberItem key={item.name} member={item} />
+  const renderMemberList = ({ item }, index) => {
+    return <MemberItem key={item.name} member={item} index={index} />
   }
 
   return (
     <View style={[style]}>
-      {/* <List data={data} renderItem={renderMemberList} scrollEnabled={false} /> */}
-      {data.map(item => renderMemberList({ item }))}
+      {data.map((item, index) => renderMemberList({ item }, index + 1))}
     </View>
   )
 }

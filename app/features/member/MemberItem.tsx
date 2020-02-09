@@ -31,9 +31,10 @@ const styles = StyleSheet.create({
 
 interface MemberItemProps {
   member: any
+  index?: number
 }
 
-export const MemberItem = ({ member }: MemberItemProps) => {
+export const MemberItem = ({ member, index }: MemberItemProps) => {
   const [checked, setChecked] = useState(false)
   const switchCheck = () => {
     setChecked(!checked)
@@ -56,6 +57,7 @@ export const MemberItem = ({ member }: MemberItemProps) => {
           category="s1"
           numberOfLines={1}
         >
+          {index ? `${index}. ` : ''}
           {member.fullName}
         </Text>
         {/* <View style={styles.toggleAnimation}> */}
