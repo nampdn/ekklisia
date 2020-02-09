@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView } from 'react-native'
 import { Layout, Text } from '@ui-kitten/components'
 import CalendarStrip from 'react-native-calendar-strip'
 
-import { ConfirmSlider } from './ConfirmButton'
+import { ConfirmSlider } from './ConfirmButton.web'
 import { unit } from '../styles'
 import { MemberList, memberList } from '../member'
 import { ActivitySelect } from '../activity'
@@ -33,6 +33,7 @@ export const AttendanceScreen = () => {
         />
         <ActivitySelect />
         <MemberList data={memberList} />
+        <ConfirmSlider />
       </ScrollView>
     </Layout>
   )
