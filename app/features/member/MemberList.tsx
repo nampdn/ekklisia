@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, StyleProp, ViewStyle } from 'react-native'
-import { List } from '@ui-kitten/components'
 
 import { MemberItem } from './MemberItem'
 

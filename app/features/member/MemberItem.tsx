@@ -17,14 +17,16 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
-    fontSize: 18,
+    fontSize: 14,
   },
   toggle: {
     marginRight: 10,
   },
   toggleAnimation: {
-    width: 14 * unit,
-    height: 14 * unit,
+    width: 6 * unit,
+    height: 6 * unit,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   checkView: {},
 })
@@ -48,7 +50,7 @@ export const MemberItem = ({ member, index }: MemberItemProps) => {
       <Layout level="3" style={styles.memberItem}>
         <Avatar
           style={styles.avatar}
-          size="large"
+          size="small"
           source={{ uri: buildAvatarUrl(member.id, member.facebookId) }}
         />
         <Text
@@ -60,21 +62,21 @@ export const MemberItem = ({ member, index }: MemberItemProps) => {
           {index ? `${index}. ` : ''}
           {member.fullName}
         </Text>
-        {/* <View style={styles.toggleAnimation}> */}
-        <Lottie
-          direction={checked ? 1 : -1}
-          style={{
-            position: 'absolute',
-            width: 12 * unit,
-            height: 12 * unit,
-            right: -2 * unit,
-          }}
-          options={{
-            loop: false,
-            animationData: animation,
-          }}
-        />
-        {/* </View> */}
+        <View style={styles.toggleAnimation}>
+          <Lottie
+            direction={checked ? 1 : -1}
+            style={{
+              position: 'absolute',
+              width: 10 * unit,
+              height: 10 * unit,
+              right: -2 * unit,
+            }}
+            options={{
+              loop: false,
+              animationData: animation,
+            }}
+          />
+        </View>
       </Layout>
     </TouchableOpacity>
   )

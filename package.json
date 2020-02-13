@@ -13,6 +13,7 @@
         "shx": "0.3.2"
     },
     "dependencies": {
+        "@types/moment": "2.13.0",
         "expo-constants": "^7.0.1",
         "react-hook-form": "4.8.0",
         "react-native-calendar-strip": "1.4.0",
