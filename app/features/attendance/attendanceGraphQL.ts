@@ -9,3 +9,34 @@ export const MEMBERS_IN_GROUP = gql`
     }
   }
 `
+
+export const SCHEDULE_UNTIL_NOW = gql`
+  query {
+    scheduleUntilNow {
+      id
+      date
+      activity {
+        id
+        name
+      }
+    }
+  }
+`
+
+export const ATTENDANCE = gql`
+  query {
+    members: membersInGroup {
+      id
+      fullName
+      facebookId
+    }
+    schedules: scheduleUntilNow {
+      id
+      date
+      activity {
+        id
+        name
+      }
+    }
+  }
+`

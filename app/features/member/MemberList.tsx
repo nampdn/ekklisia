@@ -10,7 +10,7 @@ export interface MemberListProps {
 
 export const MemberList = ({ data, style }: MemberListProps) => {
   const renderMemberList = ({ item }, index) => {
-    return <MemberItem key={item.name} member={item} index={index} />
+    return <MemberItem key={item.id} member={item} index={index} />
   }
 
   return (
