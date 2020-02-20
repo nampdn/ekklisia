@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native'
-import { Radio, RadioGroup } from '@ui-kitten/components'
+import { Radio, RadioGroup, Text } from '@ui-kitten/components'
 import moment from 'moment'
 import 'moment/locale/vi'
 import 'moment-timezone'
@@ -50,19 +50,23 @@ export const ActivitySelect = ({
 
   return (
     <View style={[styles.layout, style]}>
-      <RadioGroup
-        style={styles.radioGroup}
-        selectedIndex={index}
-        onChange={onCheckedChange}
-      >
-        {data.map(item => (
-          <Radio
-            key={item.activityId}
-            style={styles.radio}
-            text={`${item.name} ${showDate(item.date)}`}
-          />
-        ))}
-      </RadioGroup>
+      {data.length > 0 ? (
+        <RadioGroup
+          style={styles.radioGroup}
+          selectedIndex={index}
+          onChange={onCheckedChange}
+        >
+          {data.map(item => (
+            <Radio
+              key={item.activityId}
+              style={styles.radio}
+              text={`${item.name}`}
+            />
+          ))}
+        </RadioGroup>
+      ) : (
+        <Text>Không có hoạt động</Text>
+      )}
     </View>
   )
 }

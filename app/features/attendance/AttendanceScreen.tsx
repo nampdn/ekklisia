@@ -8,6 +8,7 @@ import 'moment/locale/vi'
 import 'moment-timezone'
 import _ from 'lodash'
 
+import { LoadingView } from '../../components/common'
 import { ConfirmSlider } from './ConfirmButton.web'
 import { unit } from '../styles'
 import { MemberList } from '../member'
@@ -182,7 +183,7 @@ export const AttendanceScreen = withStyles(
       if (loadAttendanceCalled && !attendanceLoading) {
         setMembers(mapAttendance(data.members, attendanceData.attendance))
       }
-    }, [attendanceLoading])
+    }, [attendanceLoading, attendanceData])
 
     return (
       <Layout level="4" style={styles.layout}>
@@ -191,7 +192,7 @@ export const AttendanceScreen = withStyles(
             <Text style={styles.headerText} category="h4">
               Điểm Danh
             </Text>
-            {loading || makeAttendanceLoading ? (
+            {loading ? (
               <View style={styles.loading}>
                 <Spinner size="giant" />
               </View>
@@ -222,10 +223,21 @@ export const AttendanceScreen = withStyles(
                 />
                 <MemberList
                   data={members}
-                  disabled={selectedActivity === -1}
+                  disabled={
+                    selectedActivity === -1 ||
+                    attendanceLoading ||
+                    makeAttendanceLoading
+                  }
                   onChange={markMemberAttendance}
                 />
-                <ConfirmSlider onConfirm={saveAttendance} />
+                <ConfirmSlider
+                  disabled={selectedActivity === -1}
+                  onConfirm={saveAttendance}
+                />
+                <LoadingView
+                  show={makeAttendanceLoading || attendanceLoading}
+                  text="Đang xử lý..."
+                />
               </>
             )}
           </Layout>

@@ -1,18 +1,29 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleProp, ViewStyle } from 'react-native'
+import { View, StyleProp, ViewStyle, StyleSheet } from 'react-native'
+import { Spinner } from '@ui-kitten/components'
 
 import { MemberItem } from './MemberItem'
 
 export interface MemberListProps {
   data: any[]
   disabled?: boolean
+  loading?: boolean
   onChange?: (data: any[]) => void
   style?: StyleProp<ViewStyle>
 }
 
+const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    backgroundColor: '#dedede',
+    opacity: 50,
+  },
+})
+
 export const MemberList = ({
   data,
   style,
+  loading = false,
   onChange,
   disabled,
 }: MemberListProps) => {
@@ -43,6 +54,7 @@ export const MemberList = ({
   return (
     <View style={[style]}>
       {data.map((item, index) => renderMemberList({ item }, index))}
+      {loading && <Spinner style={styles.loading} />}
     </View>
   )
 }

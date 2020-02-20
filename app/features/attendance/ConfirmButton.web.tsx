@@ -31,7 +31,7 @@ export const ConfirmSlider = ({
 
   return (
     <Button disabled={disabled} style={styles.container} onPress={onConfirm}>
-      Xác Nhận
+      Lưu Điểm Danh
     </Button>
   )
 }
