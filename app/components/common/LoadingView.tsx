@@ -4,16 +4,16 @@ import { Layout, Modal, Text, Spinner } from '@ui-kitten/components'
 
 export const LoadingView = ({ show, text }: any) => {
   const [visible, setVisible] = React.useState(show)
-  const delay = useRef(null)
+  // const delay = useRef(null)
 
   useEffect(() => {
-    if (show !== visible && !show && delay.current) {
-      clearTimeout(delay.current)
-    }
-    delay.current = setTimeout(() => {
-      setVisible(show)
-      clearTimeout(delay.current)
-    }, 500)
+    // if (show !== visible && !show && delay.current) {
+    //   clearTimeout(delay.current)
+    // }
+    // delay.current = setTimeout(() => {
+    //   clearTimeout(delay.current)
+    // }, 500)
+    setVisible(show)
   }, [show])
 
   const renderModalElement = () => (
