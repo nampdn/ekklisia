@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native'
 import { Radio, RadioGroup } from '@ui-kitten/components'
 import moment from 'moment'
@@ -19,6 +19,8 @@ const styles = StyleSheet.create({
 export interface ActivitySelectProps {
   data: any[]
   style?: StyleProp<ViewStyle>
+  selectedIndex?: number
+  onChange?: (index: number) => void
 }
 
 const showDate = date => {
@@ -29,12 +31,22 @@ const showDate = date => {
     .fromNow()})`
 }
 
-export const ActivitySelect = ({ data, style }: ActivitySelectProps) => {
-  const [index, setIndex] = useState(0)
+export const ActivitySelect = ({
+  data,
+  style,
+  selectedIndex = 0,
+  onChange,
+}: ActivitySelectProps) => {
+  const [index, setIndex] = useState(selectedIndex)
 
   const onCheckedChange = i => {
     setIndex(i)
+    onChange && onChange(i)
   }
+
+  useEffect(() => {
+    if (selectedIndex != index) setIndex(selectedIndex)
+  }, [selectedIndex])
 
   return (
     <View style={[styles.layout, style]}>

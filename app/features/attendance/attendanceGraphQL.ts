@@ -23,7 +23,7 @@ export const SCHEDULE_UNTIL_NOW = gql`
   }
 `
 
-export const ATTENDANCE = gql`
+export const GET_GROUP_DATA = gql`
   query {
     members: membersInGroup {
       id
@@ -36,6 +36,45 @@ export const ATTENDANCE = gql`
       activity {
         id
         name
+      }
+    }
+  }
+`
+
+export const GET_ATTENDANCE = gql`
+  query($attendanceSlug: String!) {
+    attendance(where: { slug: $attendanceSlug }) {
+      id
+      attendees {
+        id
+        fullName
+      }
+      absentees {
+        id
+        fullName
+      }
+    }
+  }
+`
+
+export const MAKE_ATTENDANCE_MUTATION = gql`
+  mutation makeAttendance(
+    $scheduleId: ID!
+    $attendees: [ID!]
+    $absentees: [ID!]
+  ) {
+    makeAttendance(
+      scheduleId: $scheduleId
+      attendees: $attendees
+      absentees: $absentees
+    ) {
+      id
+      slug
+      attendees {
+        id
+      }
+      absentees {
+        id
       }
     }
   }

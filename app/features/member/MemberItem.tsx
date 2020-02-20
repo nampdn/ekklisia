@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { Avatar, Text, Layout, CheckBox } from '@ui-kitten/components'
+import { Avatar, Text, Layout } from '@ui-kitten/components'
 import Lottie from 'lottie-react-web'
 
 import animation from '../../assets/check-icon.json'
@@ -29,25 +29,51 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   checkView: {},
+  disabled: {
+    opacity: 0.8,
+    backgroundColor: '#cecece',
+  },
 })
 
 interface MemberItemProps {
   member: any
+  disabled?: boolean
+  checked?: boolean
   index?: number
+  onCheck?: (state: boolean) => void
 }
 
-export const MemberItem = ({ member, index }: MemberItemProps) => {
-  const [checked, setChecked] = useState(false)
+export const MemberItem = ({
+  member,
+  index,
+  disabled = true,
+  checked,
+  onCheck,
+}: MemberItemProps) => {
+  const [isChecked, setIsChecked] = useState(checked || false)
+
   const switchCheck = () => {
-    setChecked(!checked)
+    setIsChecked(!isChecked)
+    onCheck && onCheck(!isChecked)
   }
+
   const buildAvatarUrl = (id, fid) =>
     fid
       ? `http://graph.facebook.com/v6.0/${fid}/picture`
       : `https://api.adorable.io/avatars/285/${id}.png`
+
+  useEffect(() => {
+    if (checked !== isChecked) {
+      setIsChecked(checked)
+    }
+  }, [checked])
+
   return (
-    <TouchableOpacity onPress={switchCheck}>
-      <Layout level="3" style={styles.memberItem}>
+    <TouchableOpacity disabled={disabled} onPress={switchCheck}>
+      <Layout
+        level="3"
+        style={[styles.memberItem, disabled && styles.disabled]}
+      >
         <Avatar
           style={styles.avatar}
           size="small"
@@ -59,12 +85,12 @@ export const MemberItem = ({ member, index }: MemberItemProps) => {
           category="s1"
           numberOfLines={1}
         >
-          {index ? `${index}. ` : ''}
+          {index >= 0 ? `${index + 1}. ` : ''}
           {member.fullName}
         </Text>
         <View style={styles.toggleAnimation}>
           <Lottie
-            direction={checked ? 1 : -1}
+            direction={isChecked ? 1 : -1}
             style={{
               position: 'absolute',
               width: 10 * unit,

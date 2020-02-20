@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { StyleSheet, ScrollView, View } from 'react-native'
 import { Layout, Text, Spinner, withStyles } from '@ui-kitten/components'
 import CalendarStrip from 'react-native-calendar-strip'
-import useLocalStorage from 'react-use-localstorage'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery, useMutation } from '@apollo/react-hooks'
 import moment from 'moment'
 import 'moment/locale/vi'
 import 'moment-timezone'
@@ -13,7 +12,7 @@ import { ConfirmSlider } from './ConfirmButton.web'
 import { unit } from '../styles'
 import { MemberList } from '../member'
 import { ActivitySelect } from '../activity'
-import { ATTENDANCE } from './attendanceGraphQL'
+import { GET_GROUP_DATA, MAKE_ATTENDANCE_MUTATION } from './attendanceGraphQL'
 
 const styles = StyleSheet.create({
   layout: {
@@ -87,31 +86,64 @@ const groupSchedule = (schedules: any[]) => {
   return result
 }
 
+const mapAttendance = (members: any[], attendance: any) => {}
+
 const Calendar = CalendarStrip as any
 
 export const AttendanceScreen = withStyles(
   (props: any) => {
     const { themedStyle } = props
 
+    const attendanceList = useRef<any>({})
     const [markedDates, setMarkedDates] = useState([])
     const [activities, setActivities] = useState([])
+    const [selectedActivity, setSelectedActivity] = useState(-1)
     const [selectedDate, setSelectedDate] = useState(moment())
-    const { loading, data } = useQuery(ATTENDANCE, {})
+
+    const { loading, data } = useQuery(GET_GROUP_DATA)
+    const [
+      makeAttendance,
+      { error: makeAttendanceError, loading: makeAttendanceLoading },
+    ] = useMutation(MAKE_ATTENDANCE_MUTATION)
 
     const switchDate = (dateMoment: moment.Moment) => {
       const dateKey = dateMoment.startOf('date').format()
-      setSelectedDate(dateMoment)
       const x = markedDates.find(({ date }) => date === dateKey)
-      setActivities(x && x.dots ? x.dots : [])
+      const hasActivity = x && x.dots
+      setSelectedDate(dateMoment)
+      setActivities(hasActivity ? x.dots : [])
+      setSelectedActivity(hasActivity ? 0 : -1)
+      attendanceList.current = {}
+    }
+
+    const updateMemberAttendance = (data: any[]) => {
+      const scheduleId = activities[selectedActivity].scheduleId
+      const attendees = data.filter(p => p.checked).map(p => p.id)
+      const absentees = data.filter(p => !p.checked).map(p => p.id)
+      attendanceList.current = { scheduleId, attendees, absentees }
+    }
+
+    const selectActivity = (index: number) => {
+      setSelectedActivity(activities.length > 0 ? index : -1)
+    }
+
+    const saveAttendance = () => {
+      if (attendanceList.current.scheduleId) {
+        makeAttendance({ variables: attendanceList.current })
+      }
     }
 
     useEffect(() => {
       if (data && data.schedules) {
         const d = groupSchedule(data.schedules)
-        console.log(d)
         setMarkedDates(d)
       }
     }, [loading])
+
+    useEffect(() => {
+      if (selectedActivity !== -1) {
+      }
+    }, [selectedActivity])
 
     return (
       <Layout level="4" style={styles.layout}>
@@ -120,7 +152,7 @@ export const AttendanceScreen = withStyles(
             <Text style={styles.headerText} category="h4">
               Điểm Danh
             </Text>
-            {loading ? (
+            {loading || makeAttendanceLoading ? (
               <View style={styles.loading}>
                 <Spinner size="giant" />
               </View>
@@ -144,13 +176,17 @@ export const AttendanceScreen = withStyles(
                     { height: 150, paddingTop: unit },
                   ]}
                 />
-                <ActivitySelect data={activities} />
-                <MemberList data={data.members} />
-                <ConfirmSlider
-                  onConfirm={() =>
-                    alert('Chức năng chưa mở, vui lòng thử lại sau')
-                  }
+                <ActivitySelect
+                  selectedIndex={selectedActivity}
+                  data={activities}
+                  onChange={selectActivity}
                 />
+                <MemberList
+                  data={data.members}
+                  disabled={selectedActivity === -1}
+                  onChange={updateMemberAttendance}
+                />
+                <ConfirmSlider onConfirm={saveAttendance} />
               </>
             )}
           </Layout>
