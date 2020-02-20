@@ -129,9 +129,14 @@ export const AttendanceScreen = withStyles(
         data: attendanceData,
       },
     ] = useLazyQuery(GET_ATTENDANCE)
-    const [makeAttendance, { loading: makeAttendanceLoading }] = useMutation(
-      MAKE_ATTENDANCE_MUTATION,
-    )
+    const [
+      makeAttendance,
+      {
+        loading: makeAttendanceLoading,
+        called: makeAttendanceCalled,
+        error: makeAttendanceError,
+      },
+    ] = useMutation(MAKE_ATTENDANCE_MUTATION)
 
     const switchDate = (dateMoment: moment.Moment) => {
       const dateKey = dateMoment.startOf('date').format()
@@ -184,6 +189,16 @@ export const AttendanceScreen = withStyles(
         setMembers(mapAttendance(data.members, attendanceData.attendance))
       }
     }, [attendanceLoading, attendanceData])
+
+    useEffect(() => {
+      if (
+        !makeAttendanceLoading &&
+        makeAttendanceCalled &&
+        !makeAttendanceError
+      ) {
+        alert('Điểm danh thành công, chân thành cảm ơn bạn ^^!')
+      }
+    }, [makeAttendanceLoading, makeAttendanceCalled])
 
     return (
       <Layout level="4" style={styles.layout}>

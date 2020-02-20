@@ -1,12 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { StyleSheet } from 'react-native'
-import { Button, Layout, Modal, Text, Spinner } from '@ui-kitten/components'
+import { Layout, Modal, Text, Spinner } from '@ui-kitten/components'
 
 export const LoadingView = ({ show, text }: any) => {
   const [visible, setVisible] = React.useState(show)
+  const delay = useRef(null)
 
   useEffect(() => {
-    setVisible(show)
+    if (show !== visible && !show && delay.current) {
+      clearTimeout(delay.current)
+    }
+    delay.current = setTimeout(() => {
+      setVisible(show)
+      clearTimeout(delay.current)
+    }, 500)
   }, [show])
 
   const renderModalElement = () => (
