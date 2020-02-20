@@ -59,7 +59,7 @@ export const MemberItem = ({
 
   const buildAvatarUrl = (id, fid) =>
     fid
-      ? `http://graph.facebook.com/v6.0/${fid}/picture`
+      ? `https://graph.facebook.com/v6.0/${fid}/picture`
       : `https://api.adorable.io/avatars/285/${id}.png`
 
   useEffect(() => {
