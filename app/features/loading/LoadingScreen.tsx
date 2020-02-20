@@ -3,7 +3,10 @@ import { StyleSheet } from 'react-native'
 import { Layout, Spinner, Text } from '@ui-kitten/components'
 import useLocalStorage from 'react-use-localstorage'
 import Lottie from 'lottie-react-web'
+import { useLazyQuery } from '@apollo/react-hooks'
+
 import animation from '../../assets/face-scanning.json'
+import { GET_GROUP_DATA } from '../attendance/attendanceGraphQL'
 
 const styles = StyleSheet.create({
   layout: {
@@ -17,7 +20,8 @@ const styles = StyleSheet.create({
 })
 
 export const LoadingScreen = ({ navigation }: any) => {
-  const [jwt] = useLocalStorage('jwt', '')
+  const [jwt] = useLocalStorage('jwt', undefined)
+  const [loadGroupData, { loading, called }] = useLazyQuery(GET_GROUP_DATA)
 
   const goToAuth = () => {
     navigation.replace('Auth')
@@ -28,14 +32,20 @@ export const LoadingScreen = ({ navigation }: any) => {
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      if (jwt !== '') {
-        goToAttendance()
+    if (jwt !== null) {
+      if (jwt.length > 1) {
+        loadGroupData()
       } else {
         goToAuth()
       }
-    }, 3550)
-  }, [])
+    }
+  }, [jwt])
+
+  useEffect(() => {
+    if (!loading && called) {
+      goToAttendance()
+    }
+  }, [loading, called])
 
   return (
     <Layout style={styles.layout}>
