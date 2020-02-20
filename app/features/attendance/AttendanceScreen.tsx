@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { StyleSheet, ScrollView, View } from 'react-native'
 import { Layout, Text, Spinner, withStyles } from '@ui-kitten/components'
 import CalendarStrip from 'react-native-calendar-strip'
-import { useQuery, useMutation } from '@apollo/react-hooks'
+import { useQuery, useLazyQuery, useMutation } from '@apollo/react-hooks'
 import moment from 'moment'
 import 'moment/locale/vi'
 import 'moment-timezone'
@@ -12,7 +12,11 @@ import { ConfirmSlider } from './ConfirmButton.web'
 import { unit } from '../styles'
 import { MemberList } from '../member'
 import { ActivitySelect } from '../activity'
-import { GET_GROUP_DATA, MAKE_ATTENDANCE_MUTATION } from './attendanceGraphQL'
+import {
+  GET_GROUP_DATA,
+  MAKE_ATTENDANCE_MUTATION,
+  GET_ATTENDANCE,
+} from './attendanceGraphQL'
 
 const styles = StyleSheet.create({
   layout: {
@@ -86,7 +90,21 @@ const groupSchedule = (schedules: any[]) => {
   return result
 }
 
-const mapAttendance = (members: any[], attendance: any) => {}
+const mapAttendance = (members: any[], attendance: any) => {
+  if (attendance?.id) {
+    const checkedMembers = []
+    const attendees = attendance?.attendees.map(m => m.id) || []
+
+    for (const member of members) {
+      checkedMembers.push({
+        ...member,
+        checked: attendees.indexOf(member.id) > -1,
+      })
+    }
+    return checkedMembers
+  }
+  return members
+}
 
 const Calendar = CalendarStrip as any
 
@@ -95,6 +113,7 @@ export const AttendanceScreen = withStyles(
     const { themedStyle } = props
 
     const attendanceList = useRef<any>({})
+    const [members, setMembers] = useState([])
     const [markedDates, setMarkedDates] = useState([])
     const [activities, setActivities] = useState([])
     const [selectedActivity, setSelectedActivity] = useState(-1)
@@ -102,9 +121,16 @@ export const AttendanceScreen = withStyles(
 
     const { loading, data } = useQuery(GET_GROUP_DATA)
     const [
-      makeAttendance,
-      { error: makeAttendanceError, loading: makeAttendanceLoading },
-    ] = useMutation(MAKE_ATTENDANCE_MUTATION)
+      loadAttendance,
+      {
+        loading: attendanceLoading,
+        called: loadAttendanceCalled,
+        data: attendanceData,
+      },
+    ] = useLazyQuery(GET_ATTENDANCE)
+    const [makeAttendance, { loading: makeAttendanceLoading }] = useMutation(
+      MAKE_ATTENDANCE_MUTATION,
+    )
 
     const switchDate = (dateMoment: moment.Moment) => {
       const dateKey = dateMoment.startOf('date').format()
@@ -116,7 +142,15 @@ export const AttendanceScreen = withStyles(
       attendanceList.current = {}
     }
 
-    const updateMemberAttendance = (data: any[]) => {
+    const refreshAttendance = () => {
+      if (activities[selectedActivity]?.scheduleId && data.myGroups[0]?.id) {
+        const scheduleId = activities[selectedActivity].scheduleId
+        const groupId = data.myGroups[0].id
+        loadAttendance({ variables: { slug: `${scheduleId}$${groupId}` } })
+      }
+    }
+
+    const markMemberAttendance = (data: any[]) => {
       const scheduleId = activities[selectedActivity].scheduleId
       const attendees = data.filter(p => p.checked).map(p => p.id)
       const absentees = data.filter(p => !p.checked).map(p => p.id)
@@ -141,9 +175,14 @@ export const AttendanceScreen = withStyles(
     }, [loading])
 
     useEffect(() => {
-      if (selectedActivity !== -1) {
+      refreshAttendance()
+    }, [selectedActivity, selectedDate])
+
+    useEffect(() => {
+      if (loadAttendanceCalled && !attendanceLoading) {
+        setMembers(mapAttendance(data.members, attendanceData.attendance))
       }
-    }, [selectedActivity])
+    }, [attendanceLoading])
 
     return (
       <Layout level="4" style={styles.layout}>
@@ -182,9 +221,9 @@ export const AttendanceScreen = withStyles(
                   onChange={selectActivity}
                 />
                 <MemberList
-                  data={data.members}
+                  data={members}
                   disabled={selectedActivity === -1}
-                  onChange={updateMemberAttendance}
+                  onChange={markMemberAttendance}
                 />
                 <ConfirmSlider onConfirm={saveAttendance} />
               </>

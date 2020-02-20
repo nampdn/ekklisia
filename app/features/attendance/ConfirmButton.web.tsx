@@ -18,19 +18,19 @@ export interface ConfirmSliderProps {
 }
 
 export const ConfirmSlider = ({
-  disabled,
+  disabled = false,
   title,
   onConfirm,
   ...props
 }: ConfirmSliderProps) => {
-  const [active, setActive] = useState(true)
+  const [active, setActive] = useState(disabled)
 
   useEffect(() => {
     setActive(!disabled)
   }, [disabled])
 
   return (
-    <Button style={styles.container} onPress={onConfirm}>
+    <Button disabled={disabled} style={styles.container} onPress={onConfirm}>
       Xác Nhận
     </Button>
   )

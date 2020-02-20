@@ -25,6 +25,10 @@ export const SCHEDULE_UNTIL_NOW = gql`
 
 export const GET_GROUP_DATA = gql`
   query {
+    myGroups: myGroups {
+      id
+      name
+    }
     members: membersInGroup {
       id
       fullName
@@ -42,16 +46,14 @@ export const GET_GROUP_DATA = gql`
 `
 
 export const GET_ATTENDANCE = gql`
-  query($attendanceSlug: String!) {
-    attendance(where: { slug: $attendanceSlug }) {
+  query($slug: String!) {
+    attendance(where: { slug: $slug }) {
       id
       attendees {
         id
-        fullName
       }
       absentees {
         id
-        fullName
       }
     }
   }
