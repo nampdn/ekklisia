@@ -1,14 +1,14 @@
 # Ekklisia - Church App
 
-Help Christians do their better job at Church.
+Help believers simplify their job at Church.
 
 ## 
 
 ## Main Features
 
-- [ ] Attendance management.
-  - [ ] Manager.
-  - [ ] Small Group Leader.
+- [x] Attendance management.
+  - [x] Manager.
+  - [x] Small Group Leader.
   - [ ] Reminder via Push Notifications, email.
 - [ ] Report.
   - [ ] Export data analysis.

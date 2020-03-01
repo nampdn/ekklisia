@@ -1,0 +1,7 @@
+version: "Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)"
+options: "39288dc67c3e5f0ff471013e6af1f36f"
+build_time: [1582696904, 227090000]
+inputs:
+  "/Users/nam/Projects/self/ekklisia/macos/Runner/MainFlutterWindow.swift": [1581319035, 722169305]
+  "/Users/nam/Projects/self/ekklisia/macos/Runner/AppDelegate.swift": [1581319035, 719586016]
+  "/Users/nam/Projects/self/ekklisia/macos/Flutter/GeneratedPluginRegistrant.swift": [1582696896, 934697937]

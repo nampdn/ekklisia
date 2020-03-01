@@ -9564,6 +9564,11 @@ path-type@^3.0.0:
   dependencies:
     pify "^3.0.0"
 
+paths-js@^0.4.10:
+  version "0.4.10"
+  resolved "https://registry.npmjs.org/paths-js/-/paths-js-0.4.10.tgz#a3575f409b4a36f8aa795ba4d051989021be58c7"
+  integrity sha512-JZoqlRSHtx+bc+xKI9o4bropEbqZBF4ZfYImiB1T9RYpHB73h5I8XZ7FfSBbHbBMtdD1c04ujjAPH8wUuu4+Gw==
+
 pbkdf2@^3.0.3:
   version "3.0.17"
   resolved "https://registry.npmjs.org/pbkdf2/-/pbkdf2-3.0.17.tgz#976c206530617b14ebb32114239f7b09336e93a6"
@@ -9680,6 +9685,11 @@ pnp-webpack-plugin@^1.5.0:
   integrity sha512-ZcMGn/xF/fCOq+9kWMP9vVVxjIkMCja72oy3lziR7UHy0hHFZ57iVpQ71OtveVbmzeCmphBg8pxNdk/hlK99aQ==
   dependencies:
     ts-pnp "^1.1.2"
+
+point-in-polygon@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/point-in-polygon/-/point-in-polygon-1.0.1.tgz#d59b64e8fee41c49458aac82b56718c5957b2af7"
+  integrity sha1-1Ztk6P7kHElFiqyCtWcYxZV7Kvc=
 
 portfinder@^1.0.9:
   version "1.0.25"
@@ -10469,6 +10479,15 @@ react-native-calendar-strip@1.4.0:
     moment "^2.17.1"
     prop-types "^15.6.0"
     react-lifecycles-compat "^2.0.0"
+
+react-native-chart-kit@5.1.1:
+  version "5.1.1"
+  resolved "https://registry.npmjs.org/react-native-chart-kit/-/react-native-chart-kit-5.1.1.tgz#dd990a3846c0144a6a4a22a4b39f81b9db971db8"
+  integrity sha512-rnYXIMrwJ/+ZU3bnFVSaaC3SRtO8/l9yeaXcdjTaOJX0FGWDN2y9BSzEAl+EDw0bOawTpQoCPeOjI3uZ3fZoiQ==
+  dependencies:
+    lodash "^4.17.13"
+    paths-js "^0.4.10"
+    point-in-polygon "^1.0.1"
 
 react-native-eva-icons@1.1.0:
   version "1.1.0"
